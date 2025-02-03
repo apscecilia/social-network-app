@@ -1,20 +1,16 @@
-import Link from "next/link";
+import { Suspense } from "react";
+import PostFeed from "@/components/PostFeed";
+import AuthCheck from "@/components/AuthCheck";
+import Loading from "@/components/Loading";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8">
-      <div>
-        <h2 className="text-2xl font-semibold text-center border p-4 font-mono rounded-md">
-          Starter Template
-        </h2>
+    <AuthCheck>
+      <div className="max-w-2xl mx-auto p-4 pb-20">
+        <Suspense fallback={<Loading />}>
+          <PostFeed />
+        </Suspense>
       </div>
-      <div>
-        <h1 className="text-6xl font-bold text-center">3, 2, 1... Go!</h1>
-        <h2 className="text-2xl text-center font-light text-gray-500 pt-4">
-          This page will be replaced with your app.
-        </h2>
-      </div>
-      
-    </main>
+    </AuthCheck>
   );
 }
